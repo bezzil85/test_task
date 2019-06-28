@@ -48,7 +48,7 @@ exports.delete = async (id) => {
 
 exports.fetch = async (options) => {
 	try {
-		console.log(options);
+
 		let query = `SELECT * FROM books 
 		${ options.groupby ? "GROUP BY " + options.groupby : ""}
 		${ options.orderby ? "ORDER BY " + options.orderby.split("_").join(" ") : ""}
@@ -56,7 +56,7 @@ exports.fetch = async (options) => {
 		${ options.offset ? "OFFSET " + options.offset : ""}
 		`;
 
-		let [rows, fields] = await db.query(query);
+		let [rows] = await db.query(query);
 		return rows;
 	} catch (e) {
 		console.log(e);
@@ -65,6 +65,6 @@ exports.fetch = async (options) => {
 };
 
 exports.count = async () => {
-	const [rows, fields] = await db.query(`SELECT COUNT(*) AS booksCount FROM books LIMIT 1;`);
+	const [rows] = await db.query(`SELECT COUNT(*) AS booksCount FROM books LIMIT 1;`);
 	return rows[0].booksCount;
 };

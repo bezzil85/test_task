@@ -1,5 +1,4 @@
 const express = require('express')
-  , fs = require('fs')
   , path = require('path')
   , router = express.Router()
   , Book = require('../model/book')
